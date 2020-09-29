@@ -1,10 +1,10 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import "./AdoptCard.css";
 
 const AdoptCard = (props) => {
     return (
-        <article className="adopt-card">
+        <Link className="adopt-card" to={`/animal/${props.num}`}>
             <figure>
                 <img
                     className="adopt-card-image"
@@ -19,7 +19,7 @@ const AdoptCard = (props) => {
                     Været på internatet i {props.time} dage.
                 </p>
             </section>
-        </article>
+        </Link>
     );
 };
 

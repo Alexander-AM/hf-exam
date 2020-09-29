@@ -77,7 +77,7 @@ const Form = (props) => {
                                 }
                             });
 
-                            props.onValid(data);
+                            props.onValid(data, setAlerts);
                         } else {
                             setAlerts(newAlerts);
                         }

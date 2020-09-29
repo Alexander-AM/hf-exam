@@ -5,6 +5,7 @@
     background-color: white;
     display: flex;
     width: 100%;
+    color: inherit;
 }
 
 .adopt-card figure {

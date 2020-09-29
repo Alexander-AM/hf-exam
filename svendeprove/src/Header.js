@@ -4,7 +4,7 @@ import Container from "./Container";
 import "./Header.css";
 
 const Header = () => {
-    const [currentPage, setCurrentPage] = useState("/");
+    const [currentPage, setCurrentPage] = useState("/#top");
 
     return (
         <header id="header-wrapper">

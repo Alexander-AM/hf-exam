@@ -14,7 +14,6 @@ class BlockSection extends React.Component {
         fetch(`${this.props.endpoint}/api/v1/adoptsections/${this.props.num}`)
             .then((e) => e.json())
             .then((data) => {
-                console.log(data);
                 this.setState({ data: data });
             });
     }
