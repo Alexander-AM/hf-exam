@@ -26,7 +26,7 @@ const Footer = () => {
                         <ul>
                             <li>
                                 <a
-                                    href="https://google.com/"
+                                    href="https://www.anima.dk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -35,7 +35,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
-                                    href="https://google.com/"
+                                    href="https://www.worldanimalprotection.dk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -44,7 +44,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
-                                    href="https://google.com/"
+                                    href="https://www.foedevarestyrelsen.dk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -53,7 +53,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
-                                    href="https://google.com/"
+                                    href="https://faktalink.dk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
