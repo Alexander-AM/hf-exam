@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Header from "./Header";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Footer from "./Footer";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -14,6 +15,8 @@ ReactDOM.render(
                     <App />
                 </Route>
             </Switch>
+
+            <Footer />
         </Router>
     </React.StrictMode>,
     document.getElementById("root")
