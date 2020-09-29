@@ -4,13 +4,14 @@ import Container from "./Container";
 import Form from "./Form";
 import FormElement from "./FormElement";
 import "./App.css";
+import AdoptCard from "./AdoptCard";
 
 const ENDPOINT = "https://dyrevelfaerd-alexander.herokuapp.com";
 
 class App extends React.Component {
     constructor() {
         super();
-        this.state = { about: [], volunteers: [] };
+        this.state = { about: [], volunteers: [], animals: [] };
     }
 
     componentDidMount() {
@@ -26,6 +27,13 @@ class App extends React.Component {
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ volunteers: data });
+            });
+
+        // GET Animals
+        fetch(`${ENDPOINT}/api/v1/animals`)
+            .then((e) => e.json())
+            .then((data) => {
+                this.setState({ animals: data });
             });
     }
 
@@ -153,7 +161,30 @@ class App extends React.Component {
 
                 <Container id="adopt-list">
                     <section className="adopt-list-padding">
-                        <h2>Dyr hos os</h2>
+                        <h1>Dyr hos os</h1>
+                        <h4>{this.state.animals.length} dyr</h4>
+
+                        <section className="adopt-list-items">
+                            {this.state.animals.map((animal) => {
+                                return (
+                                    <AdoptCard
+                                        title={animal.name}
+                                        content={animal.description}
+                                        time={Math.floor(
+                                            (new Date().getTime() -
+                                                new Date(
+                                                    animal.createdAt
+                                                ).getTime()) /
+                                                1000 /
+                                                60 /
+                                                60 /
+                                                24
+                                        )}
+                                        url={animal.asset.url}
+                                    />
+                                );
+                            })}
+                        </section>
                     </section>
                 </Container>
             </main>

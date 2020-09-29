@@ -64,7 +64,7 @@ const Footer = () => {
                     </section>
                 </div>
                 <section className="footer-copyright">
-                    (C) 2020 - Foreningen for Dyrevelfærd
+                    &copy; 2020 - Foreningen for Dyrevelfærd
                 </section>
             </Container>
         </footer>

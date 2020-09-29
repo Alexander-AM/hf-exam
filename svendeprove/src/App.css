@@ -57,6 +57,11 @@ address {
     font-style: normal;
 }
 
+figure {
+    padding: 0;
+    margin: 0;
+}
+
 /* About section */
 #about {
     display: flex;
@@ -187,4 +192,15 @@ address {
 /* Adopt list */
 #adopt-list .adopt-list-padding {
     padding: 1rem 0;
+}
+
+#adopt-list .adopt-list-items {
+    margin-top: 2rem;
+    display: grid;
+    grid-gap: 3rem 2rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+#adopt-list h1 {
+    color: #017afc;
 }
