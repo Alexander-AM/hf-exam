@@ -1,0 +1,71 @@
+.form {
+    position: relative;
+    text-align: center;
+}
+
+.form .form-alert {
+    color: #121212;
+    border: 1px solid rgb(255, 0, 0);
+    min-width: 80px;
+    margin: 1rem 0;
+    padding: 10px 15px;
+    background-color: rgba(255, 0, 0, 0.1);
+    font-weight: 400;
+    width: 100%;
+    box-sizing: border-box;
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+    text-align: left;
+    transform: translateY(-25%);
+    transition: visibility 0.25s ease, opacity 0.25s ease,
+        transform 0.5s ease-in-out;
+}
+
+.form .form-alert:not(:empty) {
+    visibility: visible;
+    opacity: 1;
+    position: static;
+    min-height: 2rem;
+    transform: translateY(0);
+}
+
+.form input,
+.form button {
+    outline: none;
+}
+
+.form input[type="text"] {
+    background-color: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form button {
+    color: white;
+    background-color: #017afc;
+    border: 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.form button:hover {
+    cursor: pointer;
+}
+
+.form button:disabled {
+    background-color: #31aafc;
+}
+
+.form button:disabled:hover {
+    cursor: default;
+}
+
+.form input[type="text"]::placeholder {
+    font-family: "Roboto", sans-serif;
+    color: #909090;
+}

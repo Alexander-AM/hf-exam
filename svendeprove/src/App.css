@@ -146,3 +146,45 @@ address {
     width: 100%;
     margin-bottom: 1rem;
 }
+
+/* Newsletter */
+#newsletter {
+    padding: 1rem;
+    background-color: #e2edff;
+}
+
+#newsletter .container {
+    display: flex;
+}
+
+#newsletter .container > section {
+    width: 100%;
+}
+
+#newsletter .container > section:last-child {
+    min-height: 25vmin;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#newsletter form {
+    text-align: right;
+    width: 100%;
+}
+
+#newsletter .input-wrapper {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+#newsletter .form-button-container {
+    margin: 1rem;
+}
+
+/* Adopt list */
+#adopt-list .adopt-list-padding {
+    padding: 1rem 0;
+}

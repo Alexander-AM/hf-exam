@@ -3,16 +3,36 @@ import Container from "./Container";
 
 import "./BlockSection.css";
 
-const BlockSection = (props) => {
-    return (
-        <section
-            id={props.id}
-            className="block-section"
-            style={{ backgroundImage: `url(${props.url})` }}
-        >
-            <Container>{props.children}</Container>
-        </section>
-    );
-};
+class BlockSection extends React.Component {
+    constructor(props) {
+        super();
+        this.props = props;
+        this.state = { data: [] };
+    }
+
+    componentDidMount() {
+        fetch(`${this.props.endpoint}/api/v1/adoptsections/${this.props.num}`)
+            .then((e) => e.json())
+            .then((data) => {
+                console.log(data);
+                this.setState({ data: data });
+            });
+    }
+
+    render() {
+        return this.state.data.id !== undefined ? (
+            <section
+                id={this.props.id}
+                className="block-section"
+                style={{ backgroundImage: `url(${this.state.data.asset.url})` }}
+            >
+                <Container>
+                    <h1>{this.state.data.title}</h1>
+                    <h4>{this.state.data.content}</h4>
+                </Container>
+            </section>
+        ) : null;
+    }
+}
 
 export default BlockSection;

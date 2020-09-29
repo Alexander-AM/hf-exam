@@ -24,7 +24,7 @@ const Header = () => {
                             <li>
                                 <Link
                                     className={
-                                        currentPage === "/" ? "active" : ""
+                                        currentPage === "/#top" ? "active" : ""
                                     }
                                     to="/#top"
                                     onClick={() => {
