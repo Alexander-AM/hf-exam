@@ -3,7 +3,7 @@
 - Projektnavn: Dyrevelfærd
 - Udvikler: Alexander Ahlgreen Madsen, WHF02
 - Stack: React
-- URL: 
+- URL: https://trusting-gates-fb82e6.netlify.app/
 - Login URL: 
 - Username/password: 
 
