@@ -26,9 +26,9 @@ const Header = () => {
                                     className={
                                         currentPage === "/" ? "active" : ""
                                     }
-                                    to="/"
+                                    to="/#top"
                                     onClick={() => {
-                                        setCurrentPage("/");
+                                        setCurrentPage("/#top");
                                     }}
                                 >
                                     Hjem
