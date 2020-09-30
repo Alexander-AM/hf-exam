@@ -55,8 +55,8 @@
     padding: 0.5rem;
 }
 
-.form .form-button-container button:last-child {
-    margin-left: 1rem;
+.form .form-button-container button:first-child {
+    margin-right: 1rem;
 }
 
 .form button:hover {

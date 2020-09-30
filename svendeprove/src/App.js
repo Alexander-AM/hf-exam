@@ -167,19 +167,11 @@ class App extends React.Component {
                                                 }
                                             )
                                                 .then((data) => {
-                                                    if (data.status === 500) {
-                                                        setAlerts([
-                                                            "Denne email er allerede registreret.",
-                                                        ]);
-                                                    } else {
-                                                        this.setState({
-                                                            redirect: `/newsletter/${encodeURIComponent(
-                                                                fData.get(
-                                                                    "email"
-                                                                )
-                                                            )}`,
-                                                        });
-                                                    }
+                                                    this.setState({
+                                                        redirect: `/newsletter/${encodeURIComponent(
+                                                            fData.get("email")
+                                                        )}`,
+                                                    });
                                                 })
                                                 .catch((e) => {
                                                     console.error(e);

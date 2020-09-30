@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Redirect, useParams } from "react-router-dom";
 import Container from "./Container";
 import Form from "./Form";
 import { ENDPOINT } from "./Global";
@@ -9,15 +9,23 @@ import "./Newsletter.css";
 
 const Newsletter = () => {
     const { email } = useParams();
+    const [redirect, setRedirect] = useState(false);
 
-    return (
+    return redirect ? (
+        <Redirect to="/" />
+    ) : (
         <main className="newsletter">
             <h1>Du er nu tilmeldt vores newsletter.</h1>
             <Container>
                 <Form
-                    onValid={(data) => {
-                        fetch(`${ENDPOINT}/api/v1/subscribers/${data.email}`, {
-                            method: "DELETE",
+                    onValid={async (data) => {
+                        await fetch(
+                            `${ENDPOINT}/api/v1/subscribers/${data.email}`,
+                            {
+                                method: "DELETE",
+                            }
+                        ).then((e) => {
+                            setRedirect(true);
                         });
                     }}
                     submitLabel="Afmeld"
