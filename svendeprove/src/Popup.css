@@ -9,13 +9,14 @@
     justify-content: center;
     background-color: #e2edff90;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 1rem;
 }
 
 .popup-container .popup {
     max-width: 500px;
     width: 100%;
     border: 1px solid #d0d0d0;
+    border-radius: 4px;
     background-color: #fff;
 }
 
@@ -23,17 +24,16 @@
     width: 100%;
     display: inline-block;
     box-sizing: border-box;
-    padding: 10px 20px;
+    padding: 1rem;
     margin: 0;
-    background-color: #fff;
 }
 
 .popup-container .popup-content {
-    padding: 25px;
+    padding: 1rem;
 }
 
 .popup-container .button-container {
     display: flex;
     justify-content: center;
-    margin: 15px 0 0 0;
+    margin: 1rem 0 0 0;
 }

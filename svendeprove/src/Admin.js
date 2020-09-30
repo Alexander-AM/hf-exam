@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import Container from "./Container";
+import Popup from "./Popup";
 import { ENDPOINT } from "./Global";
 
 import "./Admin.css";
@@ -12,7 +13,13 @@ class Admin extends React.Component {
             .split("; ")
             .find((row) => row.startsWith("admin="));
 
-        this.state = { animals: [], assets: [], volunteers: [], abouts: [] };
+        this.state = {
+            animals: [],
+            assets: [],
+            volunteers: [],
+            abouts: [],
+            popup: { title: "", children: <></>, visible: false },
+        };
     }
 
     componentDidMount() {
@@ -62,7 +69,24 @@ class Admin extends React.Component {
                             );
                         })}
 
-                        <button className="admin-button">+</button>
+                        <button
+                            className="admin-button"
+                            onClick={() => {
+                                this.setState({
+                                    popup: {
+                                        title: "Add About",
+                                        visible: true,
+                                        children: (
+                                            <div>
+                                                <p>About this.</p>
+                                            </div>
+                                        ),
+                                    },
+                                });
+                            }}
+                        >
+                            +
+                        </button>
                     </section>
 
                     <h2>Volunteers</h2>
@@ -108,6 +132,13 @@ class Admin extends React.Component {
                         <button className="admin-button">+</button>
                     </section>
                 </Container>
+
+                <Popup
+                    title={this.state.popup.title}
+                    visible={this.state.popup.visible}
+                >
+                    {this.state.popup.children}
+                </Popup>
             </main>
         );
     }

@@ -9,7 +9,7 @@ const Popup = (props) => {
             style={{ display: props.visible ? "flex" : "none" }}
         >
             <section className="popup">
-                <p className="popup-title">{props.title}</p>
+                <h2 className="popup-title">{props.title}</h2>
                 <section className="popup-content">{props.children}</section>
             </section>
         </article>
