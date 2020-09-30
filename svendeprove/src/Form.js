@@ -91,10 +91,31 @@ const Form = (props) => {
                     <FormElement
                         type="button"
                         label={props.cancelLabel || "Cancel"}
-                        onClick={(e) => {
+                        onClick={async (e) => {
                             e.preventDefault();
+                            e.persist();
+                            e.target.setAttribute("disabled", "");
 
-                            props.onCancel();
+                            let data = [];
+                            let children = props.children;
+                            if (children.length === undefined) {
+                                children = [children];
+                            }
+
+                            children.forEach((child) => {
+                                const childDOM = document.querySelector(
+                                    "#" + child.props.id
+                                );
+
+                                if (childDOM) {
+                                    data[child.props.id] = childDOM.value;
+                                    childDOM.value = "";
+                                }
+                            });
+
+                            await props.onCancel(data);
+
+                            e.target.removeAttribute("disabled");
                         }}
                     />
                 ) : null}

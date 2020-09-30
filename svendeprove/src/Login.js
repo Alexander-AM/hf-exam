@@ -3,10 +3,9 @@ import Form from "./Form";
 import FormElement from "./FormElement";
 import Container from "./Container";
 import { Redirect } from "react-router-dom";
+import { ENDPOINT } from "./Global";
 
 import "./Login.css";
-
-const ENDPOINT = "https://dyrevelfaerd-alexander.herokuapp.com";
 
 const Login = () => {
     const [admin, setAdmin] = useState(

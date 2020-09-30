@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "./Container";
+import { ENDPOINT } from "./Global";
 
 import "./BlockSection.css";
 
@@ -11,7 +12,7 @@ class BlockSection extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`${this.props.endpoint}/api/v1/adoptsections/${this.props.num}`)
+        fetch(`${ENDPOINT}/api/v1/adoptsections/${this.props.num}`)
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ data: data });

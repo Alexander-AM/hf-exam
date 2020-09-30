@@ -55,6 +55,10 @@
     padding: 0.5rem;
 }
 
+.form .form-button-container button:last-child {
+    margin-left: 1rem;
+}
+
 .form button:hover {
     cursor: pointer;
 }

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ENDPOINT } from "./Global";
 
 import "./Animal.css";
 import Container from "./Container";
-
-const ENDPOINT = "https://dyrevelfaerd-alexander.herokuapp.com";
 
 const Animal = (props) => {
     const [animal, setAnimal] = useState({});

@@ -7,8 +7,7 @@ import "./App.css";
 import AdoptCard from "./AdoptCard";
 import { Redirect } from "react-router-dom";
 import Slideshow from "./Slideshow";
-
-const ENDPOINT = "https://dyrevelfaerd-alexander.herokuapp.com";
+import { ENDPOINT } from "./Global";
 
 class App extends React.Component {
     constructor() {
@@ -69,7 +68,7 @@ class App extends React.Component {
                     <Redirect to={this.state.redirect} />
                 ) : (
                     <main id="top">
-                        <BlockSection endpoint={ENDPOINT} num={1} />
+                        <BlockSection num={1} />
 
                         <Container id="about">
                             {this.state.about.map((item, i) => {
@@ -142,7 +141,7 @@ class App extends React.Component {
                             </Container>
                         </section>
 
-                        <BlockSection endpoint={ENDPOINT} id="help" num={2} />
+                        <BlockSection id="help" num={2} />
 
                         <section id="newsletter">
                             <Container>
@@ -174,8 +173,11 @@ class App extends React.Component {
                                                         ]);
                                                     } else {
                                                         this.setState({
-                                                            redirect:
-                                                                "/newsletter",
+                                                            redirect: `/newsletter/${encodeURIComponent(
+                                                                fData.get(
+                                                                    "email"
+                                                                )
+                                                            )}`,
                                                         });
                                                     }
                                                 })
@@ -184,7 +186,21 @@ class App extends React.Component {
                                                 });
                                         }}
                                         submitLabel="Tilmeld"
+                                        onCancel={async (data) => {
+                                            await fetch(
+                                                `${ENDPOINT}/api/v1/subscribers/${data.email}`,
+                                                { method: "DELETE" }
+                                            );
+                                        }}
+                                        cancelLabel="Afmeld"
                                     >
+                                        <FormElement
+                                            type="text"
+                                            id="name"
+                                            label="Navn"
+                                            required
+                                        />
+
                                         <FormElement
                                             type="text"
                                             id="email"
@@ -195,19 +211,12 @@ class App extends React.Component {
                                             }
                                             required
                                         />
-
-                                        <FormElement
-                                            type="text"
-                                            id="name"
-                                            label="Navn"
-                                            required
-                                        />
                                     </Form>
                                 </section>
                             </Container>
                         </section>
 
-                        <BlockSection endpoint={ENDPOINT} id="adopt" num={3} />
+                        <BlockSection id="adopt" num={3} />
 
                         <Container id="adopt-list">
                             <section className="adopt-list-padding">

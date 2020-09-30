@@ -19,7 +19,7 @@ ReactDOM.render(
                     <Animal />
                 </Route>
 
-                <Route path="/newsletter">
+                <Route path="/newsletter/:email">
                     <Newsletter />
                 </Route>
 
