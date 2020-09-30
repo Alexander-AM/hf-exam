@@ -14,7 +14,7 @@ const AdoptCard = (props) => {
             </figure>
             <section>
                 <h4 className="adopt-card-title">{props.title}</h4>
-                <p className="adopt-card-text">{props.content}</p>
+                <div className="adopt-card-text">{props.content}</div>
                 <p className="adopt-card-time">
                     Været på internatet i {props.time} dage.
                 </p>

@@ -23,6 +23,25 @@ const FormElement = (props) => {
                             />
                         </div>
                     );
+                } else if (props.type === "password") {
+                    return (
+                        <div
+                            className={`input-wrapper ${
+                                props.required ? "required-input" : ""
+                            }`}
+                        >
+                            <input
+                                name={props.id}
+                                id={props.id}
+                                className="input-element"
+                                placeholder={props.label}
+                                type="password"
+                                defaultValue={props.default}
+                                pattern={props.pattern}
+                                required={props.required}
+                            />
+                        </div>
+                    );
                 } else if (props.type === "number") {
                     return (
                         <div

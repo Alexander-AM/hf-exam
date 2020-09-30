@@ -24,8 +24,9 @@ const Form = (props) => {
                 <FormElement
                     type="button"
                     label={props.submitLabel || "Submit"}
-                    onClick={(e) => {
+                    onClick={async (e) => {
                         e.preventDefault();
+                        e.persist();
                         e.target.setAttribute("disabled", "");
 
                         let data = {};
@@ -77,7 +78,7 @@ const Form = (props) => {
                                 }
                             });
 
-                            props.onValid(data, setAlerts);
+                            await props.onValid(data, setAlerts);
                         } else {
                             setAlerts(newAlerts);
                         }

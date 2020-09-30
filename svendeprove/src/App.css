@@ -87,6 +87,14 @@ figure {
     color: #303030;
 }
 
+/* Slideshow */
+.slideshow-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transform: translateY(calc(-50% + (75vmin / 2)));
+}
+
 /* Volunteer section */
 #volunteer {
     background-color: #e2edff;

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Animal from "./Animal";
 import Newsletter from "./Newsletter";
+import Login from "./Login";
+import Admin from "./Admin";
 import Header from "./Header";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Footer from "./Footer";
@@ -19,6 +21,14 @@ ReactDOM.render(
 
                 <Route path="/newsletter">
                     <Newsletter />
+                </Route>
+
+                <Route path="/login">
+                    <Login />
+                </Route>
+
+                <Route path="/admin">
+                    <Admin />
                 </Route>
 
                 <Route path="/">

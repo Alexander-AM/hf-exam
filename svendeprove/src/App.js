@@ -6,13 +6,20 @@ import FormElement from "./FormElement";
 import "./App.css";
 import AdoptCard from "./AdoptCard";
 import { Redirect } from "react-router-dom";
+import Slideshow from "./Slideshow";
 
 const ENDPOINT = "https://dyrevelfaerd-alexander.herokuapp.com";
 
 class App extends React.Component {
     constructor() {
         super();
-        this.state = { about: [], volunteers: [], animals: [], redirect: "" };
+        this.state = {
+            about: [],
+            volunteers: [],
+            animals: [],
+            slideshow: [],
+            redirect: "",
+        };
     }
 
     parseText(text) {
@@ -42,6 +49,17 @@ class App extends React.Component {
             .then((data) => {
                 this.setState({ animals: data });
             });
+
+        // GET Slideshow
+        fetch(`${ENDPOINT}/api/v1/adoptsections`)
+            .then((e) => e.json())
+            .then((data) => {
+                this.setState({
+                    slideshow: data.map((data) => {
+                        return data.asset.url;
+                    }),
+                });
+            });
     }
 
     render() {
@@ -63,6 +81,19 @@ class App extends React.Component {
                                 );
                             })}
                         </Container>
+
+                        <Slideshow
+                            slides={this.state.slideshow.map((data, i) => {
+                                return (
+                                    <img
+                                        key={i}
+                                        src={data}
+                                        alt={"Slideshow"}
+                                        className="slideshow-image"
+                                    />
+                                );
+                            })}
+                        />
 
                         <section id="volunteer">
                             <Container>
@@ -139,7 +170,7 @@ class App extends React.Component {
                                                 .then((data) => {
                                                     if (data.status === 500) {
                                                         setAlerts([
-                                                            "This user already exists.",
+                                                            "Denne email er allerede registreret.",
                                                         ]);
                                                     } else {
                                                         this.setState({

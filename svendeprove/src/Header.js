@@ -10,14 +10,14 @@ const Header = () => {
         <header id="header-wrapper">
             <section id="header">
                 <Container>
-                    <section className="title">
+                    <Link to="/" className="title">
                         <img
                             className="header-logo"
                             src="/images/logo.png"
                             alt="Logo"
                         />
                         <p>Foreningen for Dyrevelfærd</p>
-                    </section>
+                    </Link>
 
                     <nav>
                         <ul>

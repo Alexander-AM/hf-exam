@@ -27,6 +27,7 @@
     height: 100%;
     font-weight: bold;
     align-items: center;
+    color: inherit;
 }
 
 #header .title img {
