@@ -4,14 +4,67 @@
     border: 1px solid #d0d0d0;
     background-color: white;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     color: inherit;
 }
 
 .adopt-card figure {
-    width: 30%;
+    width: 100%;
     border-radius: 5px;
     overflow: hidden;
+}
+
+.adopt-card section {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.5rem;
+}
+
+@media screen and (min-width: 600px) {
+    .adopt-card {
+        flex-direction: row;
+        align-items: unset;
+    }
+
+    .adopt-card figure {
+        width: 40%;
+    }
+
+    .adopt-card section {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .adopt-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .adopt-card figure {
+        width: 100%;
+    }
+
+    .adopt-card section {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .adopt-card {
+        flex-direction: row;
+        align-items: unset;
+    }
+
+    .adopt-card figure {
+        width: 40%;
+    }
+
+    .adopt-card section {
+        width: 60%;
+    }
 }
 
 .adopt-card .adopt-card-image {
@@ -19,12 +72,6 @@
     height: 100%;
     object-fit: cover;
     vertical-align: bottom;
-}
-
-.adopt-card section {
-    width: 60%;
-    box-sizing: border-box;
-    padding: 1.5rem;
 }
 
 .adopt-card .adopt-card-time {

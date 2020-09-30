@@ -5,13 +5,22 @@
     flex-shrink: 0;
 }
 
-#footer .footer-info {
-    display: flex;
-    justify-content: space-between;
-}
-
 #footer .footer-info > section {
     min-width: 25%;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    padding-right: 1rem;
+}
+
+@media screen and (min-width: 700px) {
+    #footer .footer-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #footer .footer-info > section {
+        margin-bottom: 0;
+    }
 }
 
 #footer .footer-copyright {

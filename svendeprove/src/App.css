@@ -64,14 +64,23 @@ figure {
 
 /* About section */
 #about {
-    display: flex;
     width: 100%;
 }
 
 #about > section {
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 0;
     box-sizing: border-box;
+}
+
+@media screen and (min-width: 800px) {
+    #about {
+        display: flex;
+    }
+
+    #about > section {
+        padding: 1rem;
+    }
 }
 
 #about p {
@@ -85,7 +94,7 @@ figure {
 }
 
 #volunteer .volunteer-padding {
-    padding: 1rem;
+    padding: 1rem 0;
     box-sizing: border-box;
 }
 
@@ -93,9 +102,19 @@ figure {
     margin-top: 1rem;
     flex-wrap: wrap;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
-    grid-auto-rows: 100vmin;
+}
+
+@media screen and (min-width: 600px) {
+    #volunteer .volunteer-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #volunteer .volunteer-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 #volunteer .volunteer-card {
@@ -145,12 +164,14 @@ figure {
 
 /* Newsletter */
 #newsletter {
-    padding: 1rem;
+    padding: 1rem 0;
     background-color: #e2edff;
 }
 
-#newsletter .container {
-    display: flex;
+@media screen and (min-width: 800px) {
+    #newsletter .container {
+        display: flex;
+    }
 }
 
 #newsletter .container > section {
@@ -189,7 +210,13 @@ figure {
     margin-top: 2rem;
     display: grid;
     grid-gap: 3rem 2rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 800px) {
+    #adopt-list .adopt-list-items {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 #adopt-list h1 {

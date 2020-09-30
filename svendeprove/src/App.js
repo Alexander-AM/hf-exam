@@ -15,6 +15,12 @@ class App extends React.Component {
         this.state = { about: [], volunteers: [], animals: [], redirect: "" };
     }
 
+    parseText(text) {
+        return text.split("\n").map((line, i) => {
+            return <p key={i}>{line}</p>;
+        });
+    }
+
     componentDidMount() {
         // GET About
         fetch(`${ENDPOINT}/api/v1/abouts`)
@@ -52,11 +58,7 @@ class App extends React.Component {
                                 return (
                                     <section key={i}>
                                         <h2>{item.title}</h2>
-                                        {item.content
-                                            .split("\n")
-                                            .map((text, i) => {
-                                                return <p key={i}>{text}</p>;
-                                            })}
+                                        {this.parseText(item.content)}
                                     </section>
                                 );
                             })}
@@ -92,26 +94,9 @@ class App extends React.Component {
                                                                 }
                                                             />
 
-                                                            {volunteer.content
-                                                                .split("\n")
-                                                                .map(
-                                                                    (
-                                                                        text,
-                                                                        i
-                                                                    ) => {
-                                                                        return (
-                                                                            <p
-                                                                                key={
-                                                                                    i
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    text
-                                                                                }
-                                                                            </p>
-                                                                        );
-                                                                    }
-                                                                )}
+                                                            {this.parseText(
+                                                                volunteer.content
+                                                            )}
                                                         </section>
 
                                                         <div className="volunteer-card-extra">
@@ -205,7 +190,9 @@ class App extends React.Component {
                                                 key={i}
                                                 num={animal.id}
                                                 title={animal.name}
-                                                content={animal.description}
+                                                content={this.parseText(
+                                                    animal.description
+                                                )}
                                                 time={Math.floor(
                                                     (new Date().getTime() -
                                                         new Date(
