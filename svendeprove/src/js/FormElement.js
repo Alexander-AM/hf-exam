@@ -84,6 +84,24 @@ const FormElement = (props) => {
                     return (
                         <button onClick={props.onClick}>{props.label}</button>
                     );
+                } else if (props.type === "file") {
+                    return (
+                        <div
+                            className={`input-wrapper ${
+                                props.required ? "required-input" : ""
+                            }`}
+                        >
+                            <input
+                                name={props.id}
+                                id={props.id}
+                                className="input-element"
+                                accept={props.accept}
+                                placeholder={props.label}
+                                type="file"
+                                required={props.required}
+                            />
+                        </div>
+                    );
                 }
             })()}
         </>

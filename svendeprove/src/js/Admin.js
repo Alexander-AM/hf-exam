@@ -23,9 +23,20 @@ class Admin extends React.Component {
             assets: [],
             volunteers: [],
             abouts: [],
+            adoptsections: [],
             popup: { title: "", children: <></>, visible: false },
         };
         this.abortController = new AbortController();
+    }
+
+    convertdata(data) {
+        let fData = "";
+        Object.entries(data).forEach((entry) => {
+            fData += `${fData ? "&" : ""}${encodeURIComponent(
+                entry[0]
+            )}=${encodeURIComponent(entry[1])}`;
+        });
+        return fData;
     }
 
     componentWillUnmount() {
@@ -33,6 +44,15 @@ class Admin extends React.Component {
     }
 
     componentDidMount() {
+        // GET Adoptsections
+        fetch(`${ENDPOINT}/api/v1/adoptsections`, {
+            signal: this.abortController.signal,
+        })
+            .then((e) => e.json())
+            .then((data) => {
+                this.setState({ adoptsections: data });
+            });
+
         // GET About
         fetch(`${ENDPOINT}/api/v1/abouts`, {
             signal: this.abortController.signal,
@@ -76,13 +96,204 @@ class Admin extends React.Component {
         ) : (
             <main className="admin">
                 <Container>
-                    <h1>Administrative CMS</h1>
+                    <h1>Content Management System</h1>
+                    <h2>Sections</h2>
+                    <section className="admin-section admin-sections">
+                        {this.state.adoptsections.map((section, i) => {
+                            return (
+                                <div
+                                    className="admin-item"
+                                    key={i}
+                                    onClick={() => {
+                                        this.setState({
+                                            popup: {
+                                                title: `Modificer "${section.title}"`,
+                                                visible: true,
+                                                children: (
+                                                    <Form
+                                                        onValid={async (
+                                                            data
+                                                        ) => {
+                                                            await fetch(
+                                                                `${ENDPOINT}/api/v1/abouts/${section.id}`,
+                                                                {
+                                                                    method:
+                                                                        "PUT",
+                                                                    headers: {
+                                                                        "Content-Type":
+                                                                            "application/x-www-form-urlencoded",
+                                                                        Authorization: `Bearer ${this.admin}`,
+                                                                    },
+                                                                    body: this.convertdata(
+                                                                        data
+                                                                    ),
+                                                                }
+                                                            )
+                                                                .then((e) =>
+                                                                    e.json()
+                                                                )
+                                                                .then(
+                                                                    (data) => {
+                                                                        console.log(
+                                                                            data
+                                                                        );
+                                                                    }
+                                                                );
+
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        onCancel={() => {
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        submitLabel="Gem"
+                                                        cancelLabel="Luk"
+                                                    >
+                                                        <FormElement
+                                                            type="text"
+                                                            id="title"
+                                                            label="Title"
+                                                            default={
+                                                                section.title
+                                                            }
+                                                        />
+
+                                                        <FormElement
+                                                            type="number"
+                                                            id="asset"
+                                                            label="Asset ID"
+                                                            min={1}
+                                                            max={
+                                                                this.state
+                                                                    .assets
+                                                                    .length
+                                                            }
+                                                            default={
+                                                                section.asset.id
+                                                            }
+                                                        />
+
+                                                        <FormElement
+                                                            type="textarea"
+                                                            id="content"
+                                                            label="Content"
+                                                            default={
+                                                                section.content
+                                                            }
+                                                        />
+                                                    </Form>
+                                                ),
+                                            },
+                                        });
+                                    }}
+                                >
+                                    {section.title}
+                                </div>
+                            );
+                        })}
+                    </section>
+
                     <h2>Abouts</h2>
                     <section className="admin-section admin-about">
                         {this.state.abouts.map((about, i) => {
                             return (
-                                <div className="admin-item" key={i}>
+                                <div
+                                    className="admin-item"
+                                    key={i}
+                                    onClick={() => {
+                                        this.setState({
+                                            popup: {
+                                                title: `Modificer "${about.title}"`,
+                                                visible: true,
+                                                children: (
+                                                    <Form
+                                                        onValid={async (
+                                                            data
+                                                        ) => {
+                                                            await fetch(
+                                                                `${ENDPOINT}/api/v1/abouts/${about.id}`,
+                                                                {
+                                                                    method:
+                                                                        "PUT",
+                                                                    headers: {
+                                                                        "Content-Type":
+                                                                            "application/x-www-form-urlencoded",
+                                                                        Authorization: `Bearer ${this.admin}`,
+                                                                    },
+                                                                    body: this.convertdata(
+                                                                        data
+                                                                    ),
+                                                                }
+                                                            )
+                                                                .then((e) =>
+                                                                    e.json()
+                                                                )
+                                                                .then(
+                                                                    (data) => {
+                                                                        console.log(
+                                                                            data
+                                                                        );
+                                                                    }
+                                                                );
+
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        onCancel={() => {
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        submitLabel="Gem"
+                                                        cancelLabel="Luk"
+                                                    >
+                                                        <FormElement
+                                                            type="text"
+                                                            id="title"
+                                                            label="Title"
+                                                            default={
+                                                                about.title
+                                                            }
+                                                        />
+
+                                                        <FormElement
+                                                            type="textarea"
+                                                            id="content"
+                                                            label="Content"
+                                                            default={
+                                                                about.content
+                                                            }
+                                                        />
+                                                    </Form>
+                                                ),
+                                            },
+                                        });
+                                    }}
+                                >
                                     {about.title}
+                                </div>
+                            );
+                        })}
+                    </section>
+
+                    <h2>Volunteers</h2>
+                    <section className="admin-section admin-animals">
+                        {this.state.volunteers.map((volunteer, i) => {
+                            return (
+                                <div className="admin-item" key={i}>
+                                    {volunteer.title}
                                 </div>
                             );
                         })}
@@ -92,31 +303,23 @@ class Admin extends React.Component {
                             onClick={() => {
                                 this.setState({
                                     popup: {
-                                        title: "Tilføj About",
+                                        title: "Tilføj Volunteer",
                                         visible: true,
                                         children: (
                                             <Form
                                                 onValid={async (data) => {
                                                     const fData = new FormData();
-                                                    fData.append(
-                                                        "title",
-                                                        data.title
-                                                    );
-                                                    fData.append(
-                                                        "content",
-                                                        data.content.replace(
-                                                            /\n/g,
-                                                            "\\n"
-                                                        )
-                                                    );
-                                                    console.log(
-                                                        this.admin,
-                                                        data.title,
-                                                        data.content
-                                                    );
+                                                    Object.entries(
+                                                        data
+                                                    ).forEach((entry) => {
+                                                        fData.append(
+                                                            entry[0],
+                                                            entry[1]
+                                                        );
+                                                    });
 
                                                     await fetch(
-                                                        `${ENDPOINT}/api/v1/abouts`,
+                                                        `${ENDPOINT}/api/v1/volunteers`,
                                                         {
                                                             method: "POST",
                                                             headers: {
@@ -124,16 +327,13 @@ class Admin extends React.Component {
                                                                     "application/x-www-form-urlencoded",
                                                                 Authorization: `Bearer ${this.admin}`,
                                                             },
-                                                            body: `title=${
-                                                                data.title
-                                                            }&content=${data.content.replace(
-                                                                /\n/g,
-                                                                "\\n"
-                                                            )}`,
+                                                            body: fData,
                                                         }
-                                                    ).then((data) => {
-                                                        console.log(data);
-                                                    });
+                                                    )
+                                                        .then((e) => e.json())
+                                                        .then((data) => {
+                                                            console.log(data);
+                                                        });
 
                                                     this.setState({
                                                         popup: {
@@ -162,6 +362,12 @@ class Admin extends React.Component {
                                                     id="content"
                                                     label="Content"
                                                 />
+
+                                                <FormElement
+                                                    type="textarea"
+                                                    id="extra"
+                                                    label="Extra"
+                                                />
                                             </Form>
                                         ),
                                     },
@@ -170,19 +376,6 @@ class Admin extends React.Component {
                         >
                             +
                         </button>
-                    </section>
-
-                    <h2>Volunteers</h2>
-                    <section className="admin-section admin-animals">
-                        {this.state.volunteers.map((volunteer, i) => {
-                            return (
-                                <div className="admin-item" key={i}>
-                                    {volunteer.title}
-                                </div>
-                            );
-                        })}
-
-                        <button className="admin-button">+</button>
                     </section>
 
                     <h2>Animals</h2>
@@ -195,7 +388,76 @@ class Admin extends React.Component {
                             );
                         })}
 
-                        <button className="admin-button">+</button>
+                        <button
+                            className="admin-button"
+                            onClick={() => {
+                                this.setState({
+                                    popup: {
+                                        title: "Tilføj Animal",
+                                        visible: true,
+                                        children: (
+                                            <Form
+                                                onValid={async (data) => {
+                                                    await fetch(
+                                                        `${ENDPOINT}/api/v1/animals`,
+                                                        {
+                                                            method: "POST",
+                                                            headers: {
+                                                                "Content-Type":
+                                                                    "application/x-www-form-urlencoded",
+                                                                Authorization: `Bearer ${this.admin}`,
+                                                            },
+                                                            body: this.convertData(
+                                                                data
+                                                            ),
+                                                        }
+                                                    )
+                                                        .then((e) => e.json())
+                                                        .then((data) => {
+                                                            console.log(data);
+                                                        });
+
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                onCancel={() => {
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                submitLabel="Tilføj"
+                                                cancelLabel="Luk"
+                                            >
+                                                <FormElement
+                                                    type="text"
+                                                    id="name"
+                                                    label="Name"
+                                                />
+
+                                                <FormElement
+                                                    type="textarea"
+                                                    id="description"
+                                                    label="Description"
+                                                />
+
+                                                <FormElement
+                                                    type="number"
+                                                    id="age"
+                                                    label="Age"
+                                                />
+                                            </Form>
+                                        ),
+                                    },
+                                });
+                            }}
+                        >
+                            +
+                        </button>
                     </section>
 
                     <h2>Assets</h2>
@@ -212,7 +474,69 @@ class Admin extends React.Component {
                             );
                         })}
 
-                        <button className="admin-button">+</button>
+                        <button
+                            className="admin-button"
+                            onClick={() => {
+                                this.setState({
+                                    popup: {
+                                        title: "Tilføj About",
+                                        visible: true,
+                                        children: (
+                                            <Form
+                                                onValid={async (data) => {
+                                                    const fData = new FormData();
+                                                    fData.append(
+                                                        "file",
+                                                        data.file
+                                                    );
+
+                                                    await fetch(
+                                                        `${ENDPOINT}/api/v1/assets`,
+                                                        {
+                                                            method: "POST",
+                                                            headers: {
+                                                                Authorization: `Bearer ${this.admin}`,
+                                                            },
+                                                            body: fData,
+                                                        }
+                                                    )
+                                                        .then((e) => e.text())
+                                                        .then((data) => {
+                                                            console.log(data);
+                                                        })
+                                                        .catch((e) => {
+                                                            console.error(e);
+                                                        });
+
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                onCancel={() => {
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                submitLabel="Tilføj"
+                                                cancelLabel="Luk"
+                                            >
+                                                <FormElement
+                                                    type="file"
+                                                    id="file"
+                                                    accept="image/*"
+                                                />
+                                            </Form>
+                                        ),
+                                    },
+                                });
+                            }}
+                        >
+                            +
+                        </button>
                     </section>
                 </Container>
 

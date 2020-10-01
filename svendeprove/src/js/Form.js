@@ -73,7 +73,12 @@ const Form = (props) => {
                                 );
 
                                 if (childDOM) {
-                                    data[child.props.id] = childDOM.value;
+                                    if (child.props.type === "file") {
+                                        data[child.props.id] = childDOM.files;
+                                    } else {
+                                        data[child.props.id] = childDOM.value;
+                                    }
+
                                     childDOM.value = "";
                                 }
                             });
