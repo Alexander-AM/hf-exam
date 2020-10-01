@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import Animal from "./Animal";
-import Newsletter from "./Newsletter";
-import Login from "./Login";
-import Admin from "./Admin";
-import Header from "./Header";
+import App from "./js/App";
+import Animal from "./js/Animal";
+import Newsletter from "./js/Newsletter";
+import Login from "./js/Login";
+import Admin from "./js/Admin";
+import Header from "./js/Header";
+import Footer from "./js/Footer";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Footer from "./Footer";
 
 ReactDOM.render(
     <React.StrictMode>

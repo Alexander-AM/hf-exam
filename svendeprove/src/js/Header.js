@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import Container from "./Container";
-import "./Header.css";
+import "../css/Header.css";
 
 const Header = () => {
     const [currentPage, setCurrentPage] = useState("/#top");

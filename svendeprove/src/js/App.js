@@ -3,11 +3,12 @@ import BlockSection from "./BlockSection";
 import Container from "./Container";
 import Form from "./Form";
 import FormElement from "./FormElement";
-import "./App.css";
 import AdoptCard from "./AdoptCard";
 import { Redirect } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import { ENDPOINT } from "./Global";
+
+import "../css/App.css";
 
 class App extends React.Component {
     constructor() {

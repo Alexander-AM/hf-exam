@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./AdoptCard.css";
+import "../css/AdoptCard.css";
 
 const AdoptCard = (props) => {
     return (

@@ -4,7 +4,7 @@ import Container from "./Container";
 import Popup from "./Popup";
 import { ENDPOINT } from "./Global";
 
-import "./Admin.css";
+import "../css/Admin.css";
 
 class Admin extends React.Component {
     constructor() {

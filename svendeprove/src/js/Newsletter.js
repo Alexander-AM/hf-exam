@@ -5,7 +5,7 @@ import Form from "./Form";
 import { ENDPOINT } from "./Global";
 import FormElement from "./FormElement";
 
-import "./Newsletter.css";
+import "../css/Newsletter.css";
 
 const Newsletter = () => {
     const { email } = useParams();
