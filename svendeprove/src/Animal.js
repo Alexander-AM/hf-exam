@@ -26,7 +26,13 @@ const Animal = (props) => {
 
                         <section className="animal-info">
                             <h1>{animal.name}</h1>
-                            <h2 className="adopt-card-time">
+                            <h2 className="adopt-card-age">
+                                {animal.age} years old
+                            </h2>
+                            <p className="adopt-card-text">
+                                {animal.description}
+                            </p>
+                            <p className="adopt-card-time adopt-card-text">
                                 Været på internatet i{" "}
                                 {Math.floor(
                                     (new Date().getTime() -
@@ -37,8 +43,7 @@ const Animal = (props) => {
                                         24
                                 )}{" "}
                                 dage.
-                            </h2>
-                            <p>{animal.description}</p>
+                            </p>
                         </section>
                     </section>
                 </Container>
