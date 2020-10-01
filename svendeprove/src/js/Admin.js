@@ -2,6 +2,8 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import Container from "./Container";
 import Popup from "./Popup";
+import Form from "./Form";
+import FormElement from "./FormElement";
 import { ENDPOINT } from "./Global";
 
 import "../css/Admin.css";
@@ -12,6 +14,9 @@ class Admin extends React.Component {
         this.admin = document.cookie
             .split("; ")
             .find((row) => row.startsWith("admin="));
+        if (this.admin !== undefined) {
+            this.admin = this.admin.split("=")[1];
+        }
 
         this.state = {
             animals: [],
@@ -87,12 +92,77 @@ class Admin extends React.Component {
                             onClick={() => {
                                 this.setState({
                                     popup: {
-                                        title: "Add About",
+                                        title: "Tilføj About",
                                         visible: true,
                                         children: (
-                                            <div>
-                                                <p>About this.</p>
-                                            </div>
+                                            <Form
+                                                onValid={async (data) => {
+                                                    const fData = new FormData();
+                                                    fData.append(
+                                                        "title",
+                                                        data.title
+                                                    );
+                                                    fData.append(
+                                                        "content",
+                                                        data.content.replace(
+                                                            /\n/g,
+                                                            "\\n"
+                                                        )
+                                                    );
+                                                    console.log(
+                                                        this.admin,
+                                                        data.title,
+                                                        data.content
+                                                    );
+
+                                                    await fetch(
+                                                        `${ENDPOINT}/api/v1/abouts`,
+                                                        {
+                                                            method: "POST",
+                                                            headers: {
+                                                                "Content-Type":
+                                                                    "application/x-www-form-urlencoded",
+                                                                Authorization: `Bearer ${this.admin}`,
+                                                            },
+                                                            body: `title=${
+                                                                data.title
+                                                            }&content=${data.content.replace(
+                                                                /\n/g,
+                                                                "\\n"
+                                                            )}`,
+                                                        }
+                                                    ).then((data) => {
+                                                        console.log(data);
+                                                    });
+
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                onCancel={() => {
+                                                    this.setState({
+                                                        popup: {
+                                                            visible: false,
+                                                        },
+                                                    });
+                                                }}
+                                                submitLabel="Tilføj"
+                                                cancelLabel="Luk"
+                                            >
+                                                <FormElement
+                                                    type="text"
+                                                    id="title"
+                                                    label="Title"
+                                                />
+
+                                                <FormElement
+                                                    type="textarea"
+                                                    id="content"
+                                                    label="Content"
+                                                />
+                                            </Form>
                                         ),
                                     },
                                 });

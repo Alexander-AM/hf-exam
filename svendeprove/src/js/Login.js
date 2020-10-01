@@ -33,9 +33,9 @@ const Login = () => {
                             .then((data) => {
                                 document.cookie = `admin=${
                                     data.token
-                                }; expires=${new Date(
-                                    data.expires
-                                ).toUTCString()}`;
+                                };expires=${new Date(
+                                    data.validUntil
+                                ).toUTCString()};path=/`;
 
                                 setAdmin(
                                     document.cookie

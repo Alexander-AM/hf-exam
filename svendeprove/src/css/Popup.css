@@ -30,6 +30,7 @@
 
 .popup-container .popup-content {
     padding: 1rem;
+    padding-top: 0;
 }
 
 .popup-container .button-container {

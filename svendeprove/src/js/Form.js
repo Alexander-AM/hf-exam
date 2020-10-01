@@ -32,7 +32,7 @@ const Form = (props) => {
                         let data = {};
                         let valid = true;
                         let newAlerts = [];
-                        let children = props.children;
+                        let children = props.children || [];
                         if (children.length === undefined) {
                             children = [children];
                         }
@@ -97,7 +97,7 @@ const Form = (props) => {
                             e.target.setAttribute("disabled", "");
 
                             let data = [];
-                            let children = props.children;
+                            let children = props.children || [];
                             if (children.length === undefined) {
                                 children = [children];
                             }

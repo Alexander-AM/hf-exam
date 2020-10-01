@@ -48,3 +48,11 @@
 .admin .form {
     text-align: left;
 }
+
+.admin .form .input-wrapper {
+    margin: 1rem 0;
+}
+
+.admin .form:first-child .input-wrapper:first-child {
+    margin-top: 0;
+}
