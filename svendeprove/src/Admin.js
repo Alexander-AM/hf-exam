@@ -20,32 +20,45 @@ class Admin extends React.Component {
             abouts: [],
             popup: { title: "", children: <></>, visible: false },
         };
+        this.abortController = new AbortController();
+    }
+
+    componentWillUnmount() {
+        this.abortController.abort();
     }
 
     componentDidMount() {
         // GET About
-        fetch(`${ENDPOINT}/api/v1/abouts`)
+        fetch(`${ENDPOINT}/api/v1/abouts`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ abouts: data });
             });
 
         // GET Volunteers
-        fetch(`${ENDPOINT}/api/v1/volunteers`)
+        fetch(`${ENDPOINT}/api/v1/volunteers`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ volunteers: data });
             });
 
         // GET Animals
-        fetch(`${ENDPOINT}/api/v1/animals`)
+        fetch(`${ENDPOINT}/api/v1/animals`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ animals: data });
             });
 
         // GET Assets
-        fetch(`${ENDPOINT}/api/v1/assets`)
+        fetch(`${ENDPOINT}/api/v1/assets`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ assets: data });

@@ -19,6 +19,7 @@ class App extends React.Component {
             slideshow: [],
             redirect: "",
         };
+        this.abortController = new AbortController();
     }
 
     parseText(text) {
@@ -27,30 +28,42 @@ class App extends React.Component {
         });
     }
 
+    componentWillUnmount() {
+        this.abortController.abort();
+    }
+
     componentDidMount() {
         // GET About
-        fetch(`${ENDPOINT}/api/v1/abouts`)
+        fetch(`${ENDPOINT}/api/v1/abouts`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ about: data });
             });
 
         // GET Volunteers
-        fetch(`${ENDPOINT}/api/v1/volunteers`)
+        fetch(`${ENDPOINT}/api/v1/volunteers`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ volunteers: data });
             });
 
         // GET Animals
-        fetch(`${ENDPOINT}/api/v1/animals`)
+        fetch(`${ENDPOINT}/api/v1/animals`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({ animals: data });
             });
 
         // GET Slideshow
-        fetch(`${ENDPOINT}/api/v1/adoptsections`)
+        fetch(`${ENDPOINT}/api/v1/adoptsections`, {
+            signal: this.abortController.signal,
+        })
             .then((e) => e.json())
             .then((data) => {
                 this.setState({
