@@ -376,7 +376,7 @@ class Admin extends React.Component {
                                                                 },
                                                             });
                                                         }}
-                                                        submitLabel="Tilføj"
+                                                        submitLabel="Gem"
                                                         cancelLabel="Luk"
                                                     >
                                                         <FormElement
@@ -533,7 +533,120 @@ class Admin extends React.Component {
                     <section className="admin-section admin-animals">
                         {this.state.animals.map((animal, i) => {
                             return (
-                                <div className="admin-item" key={i}>
+                                <div
+                                    className="admin-item"
+                                    key={i}
+                                    onClick={() => {
+                                        this.setState({
+                                            popup: {
+                                                title: `Modificer ${animal.name}`,
+                                                visible: true,
+                                                children: (
+                                                    <Form
+                                                        onValid={async (
+                                                            data
+                                                        ) => {
+                                                            await fetch(
+                                                                `${ENDPOINT}/api/v1/animals/${animal.id}`,
+                                                                {
+                                                                    method:
+                                                                        "PUT",
+                                                                    headers: {
+                                                                        "Content-Type":
+                                                                            "application/x-www-form-urlencoded",
+                                                                        Authorization: `Bearer ${this.admin}`,
+                                                                    },
+                                                                    body: this.convertdata(
+                                                                        data
+                                                                    ),
+                                                                }
+                                                            )
+                                                                .then((e) =>
+                                                                    e.json()
+                                                                )
+                                                                .then(
+                                                                    (data) => {
+                                                                        const animalsUpdate = this
+                                                                            .state
+                                                                            .animals;
+                                                                        animalsUpdate[
+                                                                            i
+                                                                        ] = data;
+
+                                                                        this.setState(
+                                                                            {
+                                                                                animals: animalsUpdate,
+                                                                            }
+                                                                        );
+                                                                    }
+                                                                );
+
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        onCancel={() => {
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        submitLabel="Gem"
+                                                        cancelLabel="Luk"
+                                                    >
+                                                        <FormElement
+                                                            type="text"
+                                                            id="name"
+                                                            label="Name"
+                                                            default={
+                                                                animal.name
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="textarea"
+                                                            id="description"
+                                                            label="Description"
+                                                            default={
+                                                                animal.description
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="number"
+                                                            id="assetId"
+                                                            label="Asset"
+                                                            min={1}
+                                                            max={
+                                                                this.state
+                                                                    .assets
+                                                                    .length
+                                                            }
+                                                            default={
+                                                                animal.asset.id
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="number"
+                                                            id="age"
+                                                            label="Age"
+                                                            min={0}
+                                                            default={animal.age}
+                                                            required
+                                                        />
+                                                    </Form>
+                                                ),
+                                            },
+                                        });
+                                    }}
+                                >
                                     {animal.name}
                                 </div>
                             );
@@ -558,14 +671,22 @@ class Admin extends React.Component {
                                                                     "application/x-www-form-urlencoded",
                                                                 Authorization: `Bearer ${this.admin}`,
                                                             },
-                                                            body: this.convertData(
+                                                            body: this.convertdata(
                                                                 data
                                                             ),
                                                         }
                                                     )
                                                         .then((e) => e.json())
                                                         .then((data) => {
-                                                            console.log(data);
+                                                            const animalsUpdate = this
+                                                                .state.animals;
+                                                            animalsUpdate.push(
+                                                                data
+                                                            );
+
+                                                            this.setState({
+                                                                animals: animalsUpdate,
+                                                            });
                                                         });
 
                                                     this.setState({
@@ -588,18 +709,33 @@ class Admin extends React.Component {
                                                     type="text"
                                                     id="name"
                                                     label="Name"
+                                                    required
                                                 />
 
                                                 <FormElement
                                                     type="textarea"
                                                     id="description"
                                                     label="Description"
+                                                    required
+                                                />
+
+                                                <FormElement
+                                                    type="number"
+                                                    id="assetId"
+                                                    label="Asset"
+                                                    min={1}
+                                                    max={
+                                                        this.state.assets.length
+                                                    }
+                                                    required
                                                 />
 
                                                 <FormElement
                                                     type="number"
                                                     id="age"
                                                     label="Age"
+                                                    min={0}
+                                                    required
                                                 />
                                             </Form>
                                         ),
@@ -632,7 +768,7 @@ class Admin extends React.Component {
                             onClick={() => {
                                 this.setState({
                                     popup: {
-                                        title: "Tilføj About",
+                                        title: "Tilføj Asset",
                                         visible: true,
                                         children: (
                                             <Form
