@@ -19,16 +19,7 @@ const Slideshow = (props) => {
                     );
                 })}
             </div>
-            <div
-                className="slideshow-controls"
-                onClick={(e) => {
-                    if (e.target.classList.contains("slideshow-control")) {
-                        setCurrentSlide(
-                            parseInt(e.target.getAttribute("data-value"))
-                        );
-                    }
-                }}
-            >
+            <div className="slideshow-controls">
                 {props.slides.map((slide, i) => {
                     return (
                         <div
@@ -36,7 +27,9 @@ const Slideshow = (props) => {
                                 currentSlide === i ? " current" : ""
                             }`}
                             key={i}
-                            data-value={i}
+                            onClick={(e) => {
+                                setCurrentSlide(i);
+                            }}
                         ></div>
                     );
                 })}
