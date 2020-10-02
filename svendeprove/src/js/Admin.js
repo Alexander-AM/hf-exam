@@ -115,7 +115,7 @@ class Admin extends React.Component {
                                                             data
                                                         ) => {
                                                             await fetch(
-                                                                `${ENDPOINT}/api/v1/abouts/${section.id}`,
+                                                                `${ENDPOINT}/api/v1/adoptsections/${section.id}`,
                                                                 {
                                                                     method:
                                                                         "PUT",
@@ -134,8 +134,17 @@ class Admin extends React.Component {
                                                                 )
                                                                 .then(
                                                                     (data) => {
-                                                                        console.log(
-                                                                            data
+                                                                        const adoptsectionsUpdate = this
+                                                                            .state
+                                                                            .adoptsections;
+                                                                        adoptsectionsUpdate[
+                                                                            i
+                                                                        ] = data;
+
+                                                                        this.setState(
+                                                                            {
+                                                                                adoptsections: adoptsectionsUpdate,
+                                                                            }
                                                                         );
                                                                     }
                                                                 );
@@ -163,11 +172,12 @@ class Admin extends React.Component {
                                                             default={
                                                                 section.title
                                                             }
+                                                            required
                                                         />
 
                                                         <FormElement
                                                             type="number"
-                                                            id="asset"
+                                                            id="assetId"
                                                             label="Asset ID"
                                                             min={1}
                                                             max={
@@ -178,6 +188,7 @@ class Admin extends React.Component {
                                                             default={
                                                                 section.asset.id
                                                             }
+                                                            required
                                                         />
 
                                                         <FormElement
@@ -187,6 +198,7 @@ class Admin extends React.Component {
                                                             default={
                                                                 section.content
                                                             }
+                                                            required
                                                         />
                                                     </Form>
                                                 ),
@@ -237,8 +249,17 @@ class Admin extends React.Component {
                                                                 )
                                                                 .then(
                                                                     (data) => {
-                                                                        console.log(
-                                                                            data
+                                                                        const aboutsUpdate = this
+                                                                            .state
+                                                                            .abouts;
+                                                                        aboutsUpdate[
+                                                                            i
+                                                                        ] = data;
+
+                                                                        this.setState(
+                                                                            {
+                                                                                abouts: aboutsUpdate,
+                                                                            }
                                                                         );
                                                                     }
                                                                 );
@@ -266,6 +287,7 @@ class Admin extends React.Component {
                                                             default={
                                                                 about.title
                                                             }
+                                                            required
                                                         />
 
                                                         <FormElement
@@ -275,6 +297,7 @@ class Admin extends React.Component {
                                                             default={
                                                                 about.content
                                                             }
+                                                            required
                                                         />
                                                     </Form>
                                                 ),
@@ -292,7 +315,121 @@ class Admin extends React.Component {
                     <section className="admin-section admin-animals">
                         {this.state.volunteers.map((volunteer, i) => {
                             return (
-                                <div className="admin-item" key={i}>
+                                <div
+                                    className="admin-item"
+                                    key={i}
+                                    onClick={() => {
+                                        this.setState({
+                                            popup: {
+                                                title: `Modificer "${volunteer.title}"`,
+                                                visible: true,
+                                                children: (
+                                                    <Form
+                                                        onValid={async (
+                                                            data
+                                                        ) => {
+                                                            await fetch(
+                                                                `${ENDPOINT}/api/v1/volunteers/${volunteer.id}`,
+                                                                {
+                                                                    method:
+                                                                        "PUT",
+                                                                    headers: {
+                                                                        "Content-Type":
+                                                                            "application/x-www-form-urlencoded",
+                                                                        Authorization: `Bearer ${this.admin}`,
+                                                                    },
+                                                                    body: this.convertdata(
+                                                                        data
+                                                                    ),
+                                                                }
+                                                            )
+                                                                .then((e) =>
+                                                                    e.json()
+                                                                )
+                                                                .then(
+                                                                    (data) => {
+                                                                        const volunteersUpdate = this
+                                                                            .state
+                                                                            .volunteers;
+                                                                        volunteersUpdate[
+                                                                            i
+                                                                        ] = data;
+
+                                                                        this.setState(
+                                                                            {
+                                                                                volunteers: volunteersUpdate,
+                                                                            }
+                                                                        );
+                                                                    }
+                                                                );
+
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        onCancel={() => {
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        submitLabel="Tilføj"
+                                                        cancelLabel="Luk"
+                                                    >
+                                                        <FormElement
+                                                            type="text"
+                                                            id="title"
+                                                            label="Title"
+                                                            default={
+                                                                volunteer.title
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="textarea"
+                                                            id="content"
+                                                            label="Content"
+                                                            default={
+                                                                volunteer.content
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="number"
+                                                            id="assetId"
+                                                            label="Asset"
+                                                            default={
+                                                                volunteer.asset
+                                                                    .id
+                                                            }
+                                                            min={1}
+                                                            max={
+                                                                this.state
+                                                                    .assets
+                                                                    .length
+                                                            }
+                                                            required
+                                                        />
+
+                                                        <FormElement
+                                                            type="textarea"
+                                                            id="extra"
+                                                            label="Extra"
+                                                            default={
+                                                                volunteer.extra
+                                                            }
+                                                        />
+                                                    </Form>
+                                                ),
+                                            },
+                                        });
+                                    }}
+                                >
                                     {volunteer.title}
                                 </div>
                             );
@@ -308,16 +445,6 @@ class Admin extends React.Component {
                                         children: (
                                             <Form
                                                 onValid={async (data) => {
-                                                    const fData = new FormData();
-                                                    Object.entries(
-                                                        data
-                                                    ).forEach((entry) => {
-                                                        fData.append(
-                                                            entry[0],
-                                                            entry[1]
-                                                        );
-                                                    });
-
                                                     await fetch(
                                                         `${ENDPOINT}/api/v1/volunteers`,
                                                         {
@@ -327,12 +454,23 @@ class Admin extends React.Component {
                                                                     "application/x-www-form-urlencoded",
                                                                 Authorization: `Bearer ${this.admin}`,
                                                             },
-                                                            body: fData,
+                                                            body: this.convertdata(
+                                                                data
+                                                            ),
                                                         }
                                                     )
                                                         .then((e) => e.json())
                                                         .then((data) => {
-                                                            console.log(data);
+                                                            const volunteersUpdate = this
+                                                                .state
+                                                                .volunteers;
+                                                            volunteersUpdate.push(
+                                                                data
+                                                            );
+
+                                                            this.setState({
+                                                                volunteers: volunteersUpdate,
+                                                            });
                                                         });
 
                                                     this.setState({
@@ -355,12 +493,25 @@ class Admin extends React.Component {
                                                     type="text"
                                                     id="title"
                                                     label="Title"
+                                                    required
                                                 />
 
                                                 <FormElement
                                                     type="textarea"
                                                     id="content"
                                                     label="Content"
+                                                    required
+                                                />
+
+                                                <FormElement
+                                                    type="number"
+                                                    id="assetId"
+                                                    label="Asset"
+                                                    min={1}
+                                                    max={
+                                                        this.state.assets.length
+                                                    }
+                                                    required
                                                 />
 
                                                 <FormElement

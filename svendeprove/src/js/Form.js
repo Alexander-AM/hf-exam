@@ -48,18 +48,33 @@ const Form = (props) => {
                                     : childDOM.value !== "";
 
                                 childDOM.classList.remove("error");
+                                let add = true;
 
                                 if (!childValid) {
                                     if (
-                                        childDOM.getAttribute("required") !==
-                                        undefined
+                                        childDOM.getAttribute("required") === ""
                                     ) {
                                         childDOM.classList.add("error");
                                         valid = false;
                                         newAlerts.push(
                                             `Feltet "${child.props.label}" skal være udfyldt og gyldigt.`
                                         );
+                                        add = false;
                                     }
+                                }
+
+                                if (add) {
+                                    if (child.props.type === "file") {
+                                        data[child.props.id] = childDOM.files;
+                                    } else if (child.props.type === "number") {
+                                        data[child.props.id] = parseInt(
+                                            childDOM.value
+                                        );
+                                    } else {
+                                        data[child.props.id] = childDOM.value;
+                                    }
+                                } else {
+                                    data[child.props.id] = "null";
                                 }
                             }
                         });
@@ -73,12 +88,6 @@ const Form = (props) => {
                                 );
 
                                 if (childDOM) {
-                                    if (child.props.type === "file") {
-                                        data[child.props.id] = childDOM.files;
-                                    } else {
-                                        data[child.props.id] = childDOM.value;
-                                    }
-
                                     childDOM.value = "";
                                 }
                             });
