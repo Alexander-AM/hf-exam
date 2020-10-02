@@ -618,7 +618,9 @@ class Admin extends React.Component {
                                 <div
                                     className="admin-item"
                                     style={{
-                                        backgroundImage: `url(${asset.url})`,
+                                        backgroundImage: `url(${encodeURI(
+                                            asset.url
+                                        )})`,
                                     }}
                                     key={i}
                                 ></div>
@@ -638,7 +640,7 @@ class Admin extends React.Component {
                                                     const fData = new FormData();
                                                     fData.append(
                                                         "file",
-                                                        data.file
+                                                        data.file[0]
                                                     );
 
                                                     await fetch(
@@ -651,9 +653,17 @@ class Admin extends React.Component {
                                                             body: fData,
                                                         }
                                                     )
-                                                        .then((e) => e.text())
+                                                        .then((e) => e.json())
                                                         .then((data) => {
-                                                            console.log(data);
+                                                            const assetsUpdate = this
+                                                                .state.assets;
+                                                            assetsUpdate.push(
+                                                                data
+                                                            );
+
+                                                            this.setState({
+                                                                assets: assetsUpdate,
+                                                            });
                                                         })
                                                         .catch((e) => {
                                                             console.error(e);
@@ -679,6 +689,8 @@ class Admin extends React.Component {
                                                     type="file"
                                                     id="file"
                                                     accept="image/*"
+                                                    label="File"
+                                                    required
                                                 />
                                             </Form>
                                         ),

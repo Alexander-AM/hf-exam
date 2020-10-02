@@ -43,7 +43,7 @@ const Form = (props) => {
                             );
 
                             if (childDOM) {
-                                const childValid = child.props.pattern
+                                let childValid = child.props.pattern
                                     ? child.props.pattern.test(childDOM.value)
                                     : childDOM.value !== "";
 
@@ -57,7 +57,7 @@ const Form = (props) => {
                                         childDOM.classList.add("error");
                                         valid = false;
                                         newAlerts.push(
-                                            `Feltet "${child.props.label}" skal være udfyldt og gyldigt.`
+                                            `"${child.props.label}" skal være udfyldt og gyldigt.`
                                         );
                                         add = false;
                                     }
@@ -65,7 +65,17 @@ const Form = (props) => {
 
                                 if (add) {
                                     if (child.props.type === "file") {
-                                        data[child.props.id] = childDOM.files;
+                                        data[child.props.id] = [];
+
+                                        for (
+                                            let i = 0;
+                                            i < childDOM.files.length;
+                                            i++
+                                        ) {
+                                            data[child.props.id].push(
+                                                childDOM.files[i]
+                                            );
+                                        }
                                     } else if (child.props.type === "number") {
                                         data[child.props.id] = parseInt(
                                             childDOM.value
