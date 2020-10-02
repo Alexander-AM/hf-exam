@@ -318,7 +318,15 @@ class Admin extends React.Component {
                                 <div
                                     className="admin-item"
                                     key={i}
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                        if (
+                                            e.target.classList.contains(
+                                                "admin-item-delete"
+                                            )
+                                        ) {
+                                            return;
+                                        }
+
                                         this.setState({
                                             popup: {
                                                 title: `Modificer "${volunteer.title}"`,
@@ -431,6 +439,71 @@ class Admin extends React.Component {
                                     }}
                                 >
                                     {volunteer.title}
+
+                                    <div
+                                        className="admin-item-delete"
+                                        onClick={() => {
+                                            this.setState({
+                                                popup: {
+                                                    title: `Er du sikker på at du vil slette "${volunteer.title}"?`,
+                                                    visible: true,
+                                                    children: (
+                                                        <Form
+                                                            onValid={async (
+                                                                data
+                                                            ) => {
+                                                                await fetch(
+                                                                    `${ENDPOINT}/api/v1/volunteers/${volunteer.id}`,
+                                                                    {
+                                                                        method:
+                                                                            "DELETE",
+                                                                        headers: {
+                                                                            "Content-Type":
+                                                                                "application/x-www-form-urlencoded",
+                                                                            Authorization: `Bearer ${this.admin}`,
+                                                                        },
+                                                                        body: this.convertdata(
+                                                                            data
+                                                                        ),
+                                                                    }
+                                                                ).then(() => {
+                                                                    const volunteersUpdate = this
+                                                                        .state
+                                                                        .volunteers;
+                                                                    volunteersUpdate.splice(
+                                                                        i
+                                                                    );
+
+                                                                    this.setState(
+                                                                        {
+                                                                            volunteers: volunteersUpdate,
+                                                                        }
+                                                                    );
+                                                                });
+
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            onCancel={() => {
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            submitLabel="Ja"
+                                                            cancelLabel="Nej"
+                                                        ></Form>
+                                                    ),
+                                                },
+                                            });
+                                        }}
+                                    >
+                                        X
+                                    </div>
                                 </div>
                             );
                         })}
@@ -536,7 +609,15 @@ class Admin extends React.Component {
                                 <div
                                     className="admin-item"
                                     key={i}
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                        if (
+                                            e.target.classList.contains(
+                                                "admin-item-delete"
+                                            )
+                                        ) {
+                                            return;
+                                        }
+
                                         this.setState({
                                             popup: {
                                                 title: `Modificer ${animal.name}`,
@@ -648,6 +729,71 @@ class Admin extends React.Component {
                                     }}
                                 >
                                     {animal.name}
+
+                                    <div
+                                        className="admin-item-delete"
+                                        onClick={() => {
+                                            this.setState({
+                                                popup: {
+                                                    title: `Er du sikker på at du vil slette "${animal.name}"?`,
+                                                    visible: true,
+                                                    children: (
+                                                        <Form
+                                                            onValid={async (
+                                                                data
+                                                            ) => {
+                                                                await fetch(
+                                                                    `${ENDPOINT}/api/v1/animals/${animal.id}`,
+                                                                    {
+                                                                        method:
+                                                                            "DELETE",
+                                                                        headers: {
+                                                                            "Content-Type":
+                                                                                "application/x-www-form-urlencoded",
+                                                                            Authorization: `Bearer ${this.admin}`,
+                                                                        },
+                                                                        body: this.convertdata(
+                                                                            data
+                                                                        ),
+                                                                    }
+                                                                ).then(() => {
+                                                                    const animalsUpdate = this
+                                                                        .state
+                                                                        .animals;
+                                                                    animalsUpdate.splice(
+                                                                        i
+                                                                    );
+
+                                                                    this.setState(
+                                                                        {
+                                                                            animals: animalsUpdate,
+                                                                        }
+                                                                    );
+                                                                });
+
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            onCancel={() => {
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            submitLabel="Ja"
+                                                            cancelLabel="Nej"
+                                                        ></Form>
+                                                    ),
+                                                },
+                                            });
+                                        }}
+                                    >
+                                        X
+                                    </div>
                                 </div>
                             );
                         })}
@@ -759,7 +905,107 @@ class Admin extends React.Component {
                                         )})`,
                                     }}
                                     key={i}
-                                ></div>
+                                    onClick={(e) => {
+                                        if (
+                                            e.target.classList.contains(
+                                                "admin-item-delete"
+                                            )
+                                        ) {
+                                            return;
+                                        }
+
+                                        this.setState({
+                                            popup: {
+                                                title: `Asset ID: ${asset.id}`,
+                                                visible: true,
+                                                children: (
+                                                    <Form
+                                                        onValid={() => {
+                                                            this.setState({
+                                                                popup: {
+                                                                    visible: false,
+                                                                },
+                                                            });
+                                                        }}
+                                                        submitLabel="Luk"
+                                                    >
+                                                        <img
+                                                            src={encodeURI(
+                                                                asset.url
+                                                            )}
+                                                            alt="Animal"
+                                                        />
+                                                    </Form>
+                                                ),
+                                            },
+                                        });
+                                    }}
+                                >
+                                    {/*<div
+                                        className="admin-item-delete"
+                                        onClick={() => {
+                                            this.setState({
+                                                popup: {
+                                                    title: `Er du sikker på at du vil slette asset ${asset.id}?`,
+                                                    visible: true,
+                                                    children: (
+                                                        <Form
+                                                            onValid={async (
+                                                                data
+                                                            ) => {
+                                                                await fetch(
+                                                                    `${ENDPOINT}/api/v1/assets/${asset.id}`,
+                                                                    {
+                                                                        method:
+                                                                            "DELETE",
+                                                                        headers: {
+                                                                            "Content-Type":
+                                                                                "application/x-www-form-urlencoded",
+                                                                            Authorization: `Bearer ${this.admin}`,
+                                                                        },
+                                                                        body: this.convertdata(
+                                                                            data
+                                                                        ),
+                                                                    }
+                                                                ).then(() => {
+                                                                    const assetsUpdate = this
+                                                                        .state
+                                                                        .assets;
+                                                                    assetsUpdate.splice(
+                                                                        i
+                                                                    );
+
+                                                                    this.setState(
+                                                                        {
+                                                                            assets: assetsUpdate,
+                                                                        }
+                                                                    );
+                                                                });
+
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            onCancel={() => {
+                                                                this.setState({
+                                                                    popup: {
+                                                                        visible: false,
+                                                                    },
+                                                                });
+                                                            }}
+                                                            submitLabel="Ja"
+                                                            cancelLabel="Nej"
+                                                        ></Form>
+                                                    ),
+                                                },
+                                            });
+                                        }}
+                                    >
+                                        X
+                                    </div>*/}
+                                </div>
                             );
                         })}
 

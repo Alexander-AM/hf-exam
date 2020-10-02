@@ -19,12 +19,33 @@
     background-position: center;
     background-size: cover;
     flex-shrink: 0;
+    position: relative;
+}
+
+.admin .admin-item-delete {
+    background-color: #ff000090;
+    color: #ffffff;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
 }
 
 .admin .admin-item:hover {
     cursor: pointer;
     border-color: #017afc;
     border-style: solid;
+}
+
+.admin .admin-item:hover .admin-item-delete {
+    display: flex;
 }
 
 .admin .admin-button {
@@ -49,6 +70,10 @@
 
 .admin .form {
     text-align: left;
+}
+
+.admin .form img {
+    width: 100%;
 }
 
 .admin .form .input-wrapper {
