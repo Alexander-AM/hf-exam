@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import { ENDPOINT } from "./Global";
 
-import "../css/App.css";
+import "../css/App.scss";
 
 class App extends React.Component {
     constructor() {

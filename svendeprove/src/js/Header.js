@@ -3,7 +3,7 @@ import { HashLink as Link } from "react-router-hash-link";
 import Container from "./Container";
 import { MdMenu } from "react-icons/md";
 
-import "../css/Header.css";
+import "../css/Header.scss";
 
 const Header = () => {
     const [currentPage, setCurrentPage] = useState("/#top");

@@ -2,7 +2,7 @@ import React from "react";
 import Container from "./Container";
 import { ENDPOINT } from "./Global";
 
-import "../css/BlockSection.css";
+import "../css/BlockSection.scss";
 
 class BlockSection extends React.Component {
     constructor(props) {

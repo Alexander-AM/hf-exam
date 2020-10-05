@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ENDPOINT } from "./Global";
 
-import "../css/Animal.css";
+import "../css/Animal.scss";
 import Container from "./Container";
 
 const Animal = (props) => {

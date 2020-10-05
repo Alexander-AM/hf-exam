@@ -1,0 +1,117 @@
+#header-wrapper {
+    height: 3rem;
+    padding: 1rem 0;
+    flex-shrink: 0;
+
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: inherit;
+        height: inherit;
+        z-index: 500;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .title {
+            display: flex;
+            height: 100%;
+            font-weight: bold;
+            align-items: center;
+            color: inherit;
+
+            img {
+                height: 100%;
+                margin-right: 0.5rem;
+            }
+
+            p {
+                display: none;
+                margin: 0;
+
+                @media screen and (min-width: 720px) {
+                    display: block;
+                }
+            }
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: block;
+            width: 100%;
+            background-color: white;
+
+            @media screen and (min-width: 550px) {
+                display: flex;
+                width: auto;
+            }
+
+            a {
+                text-decoration: none;
+                color: #808080;
+                display: inline-block;
+                width: 100%;
+                padding: 1rem;
+
+                @media screen and (min-width: 550px) {
+                    width: auto;
+                    padding: 0.5rem;
+                }
+
+                &:hover,
+                &.active {
+                    color: #020202;
+                }
+            }
+        }
+
+        #mobile-menu-label {
+            display: block;
+            font-size: 2rem;
+            height: 1em;
+        }
+
+        nav {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            right: 0;
+            z-index: -1;
+            display: none;
+
+            @media screen and (min-width: 550px) {
+                display: flex;
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                transition: none;
+            }
+        }
+
+        #mobile-menu-label {
+            @media screen and (min-width: 550px) {
+                display: none;
+            }
+        }
+
+        #mobile-menu {
+            visibility: hidden;
+            position: absolute;
+            pointer-events: none;
+
+            &:checked + nav {
+                display: block;
+            }
+        }
+    }
+}

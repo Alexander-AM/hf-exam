@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormElement from "./FormElement";
 
-import "../css/Form.css";
+import "../css/Form.scss";
 
 const Form = (props) => {
     const [alerts, setAlerts] = useState([]);

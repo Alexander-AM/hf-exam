@@ -6,7 +6,7 @@ import Form from "./Form";
 import FormElement from "./FormElement";
 import { ENDPOINT } from "./Global";
 
-import "../css/Admin.css";
+import "../css/Admin.scss";
 
 class Admin extends React.Component {
     constructor() {

@@ -1,5 +1,6 @@
 import React from "react";
-import "../css/Container.css";
+
+import "../css/Container.scss";
 
 const Container = (props) => {
     return (

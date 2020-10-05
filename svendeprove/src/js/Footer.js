@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "./Container";
-import "../css/Footer.css";
+
+import "../css/Footer.scss";
 
 const Footer = () => {
     return (

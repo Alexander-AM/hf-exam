@@ -5,7 +5,7 @@ import Container from "./Container";
 import { Redirect } from "react-router-dom";
 import { ENDPOINT } from "./Global";
 
-import "../css/Login.css";
+import "../css/Login.scss";
 
 const Login = () => {
     const [admin, setAdmin] = useState(
