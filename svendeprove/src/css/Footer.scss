@@ -1,5 +1,7 @@
+@import "Colors";
+
 #footer {
-    background-color: #e2edff;
+    background-color: $theme-secondary;
     width: 100%;
     padding: 1.5rem 0;
     flex-shrink: 0;

@@ -1,3 +1,5 @@
+@import "Colors";
+
 .popup-container {
     position: fixed;
     top: 0;
@@ -7,16 +9,16 @@
     z-index: 600;
     align-items: center;
     justify-content: center;
-    background-color: #e2edff90;
+    background-color: rgba($theme-secondary, 0.5);
     box-sizing: border-box;
     padding: 1rem;
 
     .popup {
         max-width: 500px;
         width: 100%;
-        border: 1px solid #d0d0d0;
+        border: 1px solid $bright-color;
         border-radius: 4px;
-        background-color: #fff;
+        background-color: $brightest-color;
         max-height: 100%;
         overflow: auto;
 

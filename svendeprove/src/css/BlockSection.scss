@@ -1,9 +1,11 @@
+@import "Colors";
+
 .block-section {
     width: 100%;
     min-height: 50vmin;
     background-size: cover;
     background-position: center;
-    color: white;
+    color: $brightest-color;
     box-sizing: border-box;
     padding: 5rem 0;
 }

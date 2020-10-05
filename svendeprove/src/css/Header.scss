@@ -1,3 +1,5 @@
+@import "Colors";
+
 #header-wrapper {
     height: 3rem;
     padding: 1rem 0;
@@ -8,7 +10,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: white;
+        background-color: $brightest-color;
         padding: inherit;
         height: inherit;
         z-index: 500;
@@ -48,7 +50,7 @@
             padding: 0;
             display: block;
             width: 100%;
-            background-color: white;
+            background-color: $brightest-color;
 
             @media screen and (min-width: 550px) {
                 display: flex;
@@ -57,7 +59,7 @@
 
             a {
                 text-decoration: none;
-                color: #808080;
+                color: $medium-color;
                 display: inline-block;
                 width: 100%;
                 padding: 1rem;
@@ -69,7 +71,7 @@
 
                 &:hover,
                 &.active {
-                    color: #020202;
+                    color: $darkest-color;
                 }
             }
         }

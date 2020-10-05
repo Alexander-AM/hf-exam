@@ -1,15 +1,17 @@
+@import "Colors";
+
 .form {
     position: relative;
     text-align: center;
 
     .form-alert {
-        color: #121212;
-        border: 1px solid rgb(255, 0, 0);
+        color: $darkest-color;
+        border: 1px solid $alert;
         min-width: 80px;
         margin: 1rem 0;
         padding: 10px 15px;
         border-radius: 4px;
-        background-color: rgba(255, 0, 0, 0.1);
+        background-color: rgba($alert, 0.1);
         font-weight: 400;
         width: 100%;
         box-sizing: border-box;
@@ -41,8 +43,8 @@
     input[type="password"],
     input[type="number"],
     textarea {
-        background-color: white;
-        border: 1px solid #d0d0d0;
+        background-color: $brightest-color;
+        border: 1px solid $bright-color;
         border-radius: 5px;
         padding: 0.5rem;
         width: 100%;
@@ -51,7 +53,7 @@
 
         &::placeholder {
             font-family: "Roboto", sans-serif;
-            color: #909090;
+            color: $medium-color;
         }
     }
 
@@ -64,8 +66,8 @@
     }
 
     button {
-        color: white;
-        background-color: #017afc;
+        color: $brightest-color;
+        background-color: $theme-primary;
         border: 0;
         box-sizing: border-box;
         border-radius: 5px;
@@ -77,7 +79,7 @@
         }
 
         &:disabled {
-            background-color: #31aafc;
+            background-color: mix($brightest-color, $theme-primary, 40);
 
             &:hover {
                 cursor: default;

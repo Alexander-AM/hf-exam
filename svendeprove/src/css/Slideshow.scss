@@ -1,9 +1,11 @@
+@import "Colors";
+
 .slideshow {
     overflow: hidden;
     width: 100%;
     height: 70vmin;
     display: flex;
-    background-color: #e2edff;
+    background-color: $theme-secondary;
     flex-direction: column;
     position: relative;
 
@@ -35,7 +37,7 @@
         .slideshow-control {
             width: 1em;
             height: 1em;
-            background-color: #fff;
+            background-color: $brightest-color;
             opacity: 0.6;
             border-radius: 1em;
             margin: 0.25em;

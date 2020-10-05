@@ -1,3 +1,5 @@
+@import "Colors";
+
 .login {
     display: flex;
     flex-direction: column;
@@ -10,7 +12,7 @@
     }
 
     form {
-        border: 1px solid #d0d0d0;
+        border: 1px solid $bright-color;
         padding: 1rem;
         border-radius: 4px;
         max-width: 100%;
