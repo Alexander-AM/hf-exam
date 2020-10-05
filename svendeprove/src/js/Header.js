@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import Container from "./Container";
+import { MdMenu } from "react-icons/md";
+
 import "../css/Header.css";
 
 const Header = () => {
@@ -19,6 +21,10 @@ const Header = () => {
                         <p>Foreningen for Dyrevelfærd</p>
                     </Link>
 
+                    <label id="mobile-menu-label" htmlFor="mobile-menu">
+                        <MdMenu />
+                    </label>
+                    <input id="mobile-menu" type="checkbox" />
                     <nav>
                         <ul>
                             <li>
@@ -33,6 +39,8 @@ const Header = () => {
                                 >
                                     Hjem
                                 </Link>
+                            </li>
+                            <li>
                                 <Link
                                     className={
                                         currentPage === "/#about"
@@ -46,6 +54,8 @@ const Header = () => {
                                 >
                                     Om os
                                 </Link>
+                            </li>
+                            <li>
                                 <Link
                                     className={
                                         currentPage === "/#volunteer"
@@ -57,8 +67,11 @@ const Header = () => {
                                         setCurrentPage("/#volunteer");
                                     }}
                                 >
+                                    {" "}
                                     Bliv Frivillig
                                 </Link>
+                            </li>
+                            <li>
                                 <Link
                                     className={
                                         currentPage === "/#help" ? "active" : ""
@@ -70,6 +83,8 @@ const Header = () => {
                                 >
                                     Dyr i nød?
                                 </Link>
+                            </li>
+                            <li>
                                 <Link
                                     className={
                                         currentPage === "/#adopt"
