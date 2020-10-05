@@ -1,3 +1,5 @@
+@import "Colors";
+
 .admin {
     .admin-section {
         margin: 1rem 0;
@@ -10,7 +12,7 @@
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        border: 1px dashed #d0d0d0;
+        border: 1px dashed $bright-color;
         border-radius: 4px;
         margin: 0.25rem;
         min-width: 4rem;
@@ -23,8 +25,8 @@
         position: relative;
 
         &-delete {
-            background-color: #ff000090;
-            color: #ffffff;
+            background-color: rgba($alert, 0.5);
+            color: $brightest-color;
             position: absolute;
             z-index: 10;
             top: 0;
@@ -40,7 +42,7 @@
 
         &:hover {
             cursor: pointer;
-            border-color: #017afc;
+            border-color: $theme-primary;
             border-style: solid;
         }
 
@@ -50,9 +52,9 @@
     }
 
     .admin-button {
-        background-color: #017afc;
+        background-color: $theme-primary;
         border: 0;
-        color: white;
+        color: $brightest-color;
         font-size: 1rem;
         padding: 1rem;
         margin: 0.25rem;
@@ -63,9 +65,11 @@
         border-radius: 4px;
         display: inline-block;
         outline: none;
+        transition: box-shadow 0.25s ease-out;
 
         &:hover {
             cursor: pointer;
+            box-shadow: 0.5em 0.5em 0 0 mix($darkest-color, $theme-primary, 50);
         }
     }
 

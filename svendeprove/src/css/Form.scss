@@ -55,6 +55,11 @@
             font-family: "Roboto", sans-serif;
             color: $medium-color;
         }
+
+        &:focus,
+        &:active {
+            border-color: $theme-primary;
+        }
     }
 
     textarea {
@@ -73,9 +78,12 @@
         border-radius: 5px;
         padding: 0.5rem;
         min-width: 4rem;
+        position: relative;
+        transition: box-shadow 0.25s ease-out;
 
         &:hover {
             cursor: pointer;
+            box-shadow: 0.5em 0.5em 0 0 mix($darkest-color, $theme-primary, 50);
         }
 
         &:disabled {

@@ -11,6 +11,10 @@
     width: 100%;
     color: inherit;
 
+    &:hover {
+        border-color: $theme-primary;
+    }
+
     figure {
         width: 100%;
         border-radius: 5px;
