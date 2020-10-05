@@ -8,76 +8,70 @@
     align-items: center;
     width: 100%;
     color: inherit;
-}
 
-.adopt-card figure {
-    width: 100%;
-    border-radius: 5px;
-    overflow: hidden;
-}
+    figure {
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
 
-.adopt-card section {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 1.5rem;
-}
+        @media screen and (min-width: 600px) {
+            width: 40%;
+        }
 
-@media screen and (min-width: 600px) {
-    .adopt-card {
+        @media screen and (min-width: 800px) {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 960px) {
+            width: 40%;
+        }
+    }
+
+    section {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1.5rem;
+
+        @media screen and (min-width: 600px) {
+            width: 60%;
+        }
+
+        @media screen and (min-width: 800px) {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 960px) {
+            width: 60%;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
         flex-direction: row;
         align-items: unset;
     }
 
-    .adopt-card figure {
-        width: 40%;
-    }
-
-    .adopt-card section {
-        width: 60%;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    .adopt-card {
+    @media screen and (min-width: 800px) {
         flex-direction: column;
         align-items: center;
     }
 
-    .adopt-card figure {
-        width: 100%;
-    }
-
-    .adopt-card section {
-        width: 100%;
-    }
-}
-
-@media screen and (min-width: 960px) {
-    .adopt-card {
+    @media screen and (min-width: 960px) {
         flex-direction: row;
         align-items: unset;
     }
 
-    .adopt-card figure {
-        width: 40%;
+    .adopt-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        vertical-align: bottom;
     }
 
-    .adopt-card section {
-        width: 60%;
+    .adopt-card-time {
+        color: #909090;
     }
-}
 
-.adopt-card .adopt-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    vertical-align: bottom;
-}
-
-.adopt-card .adopt-card-time {
-    color: #909090;
-}
-
-.adopt-card .adopt-card-text {
-    margin: 0.5rem 0;
+    .adopt-card-text {
+        margin: 0.5rem 0;
+    }
 }

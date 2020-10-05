@@ -1,85 +1,87 @@
-.admin .admin-section {
-    margin: 1rem 0;
-    display: flex;
-    flex-wrap: wrap;
-}
+.admin {
+    .admin-section {
+        margin: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-.admin .admin-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    border: 1px dashed #d0d0d0;
-    border-radius: 4px;
-    margin: 0.25rem;
-    min-width: 4rem;
-    min-height: 4rem;
-    text-align: center;
-    box-sizing: border-box;
-    background-position: center;
-    background-size: cover;
-    flex-shrink: 0;
-    position: relative;
-}
+    .admin-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border: 1px dashed #d0d0d0;
+        border-radius: 4px;
+        margin: 0.25rem;
+        min-width: 4rem;
+        min-height: 4rem;
+        text-align: center;
+        box-sizing: border-box;
+        background-position: center;
+        background-size: cover;
+        flex-shrink: 0;
+        position: relative;
 
-.admin .admin-item-delete {
-    background-color: #ff000090;
-    color: #ffffff;
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    box-sizing: border-box;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100px;
-}
+        &-delete {
+            background-color: #ff000090;
+            color: #ffffff;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            right: 0;
+            box-sizing: border-box;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+        }
 
-.admin .admin-item:hover {
-    cursor: pointer;
-    border-color: #017afc;
-    border-style: solid;
-}
+        &:hover {
+            cursor: pointer;
+            border-color: #017afc;
+            border-style: solid;
+        }
 
-.admin .admin-item:hover .admin-item-delete {
-    display: flex;
-}
+        &:hover &-delete {
+            display: flex;
+        }
+    }
 
-.admin .admin-button {
-    background-color: #017afc;
-    border: 0;
-    color: white;
-    font-size: 1rem;
-    padding: 1rem;
-    margin: 0.25rem;
-    min-width: 4rem;
-    min-height: 4rem;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 4px;
-    display: inline-block;
-    outline: none;
-}
+    .admin-button {
+        background-color: #017afc;
+        border: 0;
+        color: white;
+        font-size: 1rem;
+        padding: 1rem;
+        margin: 0.25rem;
+        min-width: 4rem;
+        min-height: 4rem;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 4px;
+        display: inline-block;
+        outline: none;
 
-.admin .admin-button:hover {
-    cursor: pointer;
-}
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
-.admin .form {
-    text-align: left;
-}
+    .form {
+        text-align: left;
 
-.admin .form img {
-    width: 100%;
-}
+        img {
+            width: 100%;
+        }
 
-.admin .form .input-wrapper {
-    margin: 1rem 0;
-}
+        .input-wrapper {
+            margin: 1rem 0;
+        }
 
-.admin .form:first-child .input-wrapper:first-child {
-    margin-top: 0;
+        &:first-child .input-wrapper:first-child {
+            margin-top: 0;
+        }
+    }
 }
