@@ -8,15 +8,15 @@ import Admin from "./js/Admin";
 import Header from "./js/Header";
 import Footer from "./js/Footer";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { AiOutlineLoading } from "react-icons/ai";
 
 import "./css/index.scss";
 
 import ErrorBoundary from "./js/ErrorBoundary";
+import Loading from "./js/Loading";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Suspense fallback={<AiOutlineLoading className="loading-icon" />}>
+        <Suspense fallback={<Loading />}>
             <ErrorBoundary>
                 <Router>
                     <Header />

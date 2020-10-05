@@ -1,0 +1,21 @@
+@import "Colors";
+
+.loading-icon {
+    position: relative;
+    z-index: 10;
+    color: $darkest-color;
+    font-size: 3rem;
+    transform: translate(-50%, -50%) rotate(0deg);
+    top: 50%;
+    left: 50%;
+    animation: loading-animation 0.5s linear infinite forwards;
+}
+
+@keyframes loading-animation {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

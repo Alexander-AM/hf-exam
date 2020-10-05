@@ -1,21 +1,65 @@
 @import "Colors";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.loading-icon {
-    position: fixed;
-    z-index: 1000;
-    color: $darkest-color;
-    font-size: 3rem;
-    transform: translate(-50%, -50%) rotate(0deg);
-    top: 50%;
-    left: 50%;
-    animation: loading-animation 0.5s linear infinite forwards;
+html,
+body {
+    height: 100%;
 }
 
-@keyframes loading-animation {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex-grow: 1;
+    position: relative;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    font-weight: normal;
+    background-color: $brightest-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 0.25em 0;
+}
+
+p {
+    margin: 0 0 0.5em 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    color: $theme-primary;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    color: $theme-primary;
+}
+
+address {
+    font-style: normal;
+}
+
+figure {
+    padding: 0;
+    margin: 0;
 }

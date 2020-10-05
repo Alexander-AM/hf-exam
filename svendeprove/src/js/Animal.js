@@ -4,8 +4,9 @@ import { ENDPOINT } from "./Global";
 
 import "../css/Animal.scss";
 import Container from "./Container";
+import Loading from "./Loading";
 
-const Animal = (props) => {
+const Animal = () => {
     const [animal, setAnimal] = useState({});
     const { id } = useParams();
 
@@ -47,7 +48,9 @@ const Animal = (props) => {
                         </section>
                     </section>
                 </Container>
-            ) : null}
+            ) : (
+                <Loading />
+            )}
         </main>
     );
 };

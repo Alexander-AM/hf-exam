@@ -7,6 +7,7 @@ import AdoptCard from "./AdoptCard";
 import { Redirect } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import { ENDPOINT } from "./Global";
+import Loading from "./Loading";
 
 import "../css/App.scss";
 
@@ -255,6 +256,13 @@ class App extends React.Component {
                                     })}
                                 </section>
                             </section>
+
+                            {this.state.about.length > 0 &&
+                            this.state.animals.length > 0 &&
+                            this.state.slideshow.length > 0 &&
+                            this.state.volunteers.length > 0 ? null : (
+                                <Loading />
+                            )}
                         </Container>
                     </main>
                 )}

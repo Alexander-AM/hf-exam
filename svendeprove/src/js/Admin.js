@@ -6,6 +6,8 @@ import Form from "./Form";
 import FormElement from "./FormElement";
 import { ENDPOINT } from "./Global";
 
+import Loading from "./Loading";
+
 import "../css/Admin.scss";
 
 class Admin extends React.Component {
@@ -1091,6 +1093,14 @@ class Admin extends React.Component {
                 >
                     {this.state.popup.children}
                 </Popup>
+
+                {this.state.abouts.length > 0 &&
+                this.state.adoptsections.length > 0 &&
+                this.state.animals.length > 0 &&
+                this.state.assets.length > 0 &&
+                this.state.volunteers.length > 0 ? null : (
+                    <Loading />
+                )}
             </main>
         );
     }
