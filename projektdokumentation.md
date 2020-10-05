@@ -2,7 +2,7 @@
 ## Projektinfo
 - Projektnavn: Dyrevelfærd
 - Udvikler: Alexander Ahlgreen Madsen, WU HF02
-- Stack: React
+- Stack: React/React-Router/React-Icons
 - URL: https://trusting-gates-fb82e6.netlify.app/
 - Login URL: https://trusting-gates-fb82e6.netlify.app/login
 - Username/password: admin/1234
@@ -16,7 +16,7 @@ Jeg valgte at placere den implementerede slider imellem "about" sektionen og "vo
 Jeg placerede newsletter afmeld knappen i formen for at timelde sig, sådan så at brugerene har en let-tilgængelig knap fra forsiden af, der giver mening i sammenhængen. Jeg har dog også placeret en afmeld knap på kvitteringssiden i tilfælde af at brugeren registererede den forkerte email, eller ændrede mening om nyhedsbrevet.
 
 ## Teknologier
-Bortset fra de standard React biblioteker, er der brugt næsten ingen eksterne teknologier. Jeg valgte at bruge React fordi at jeg skulle udvikle en hjemmeside med et enkelt, fokuseret tema, på en kort mængde tid. For at få sideskift og hash links til at fungere, tog jeg også brug af React-Router, et router system der sørger for at servere den rigtige kode for de rigtige URLs, såvel som en udvidelse til det.
+Bortset fra de standard React biblioteker, er der brugt næsten ingen eksterne teknologier. Jeg valgte at bruge React fordi at jeg skulle udvikle en hjemmeside med et enkelt, fokuseret tema, på en kort mængde tid. For at få sideskift og hash links til at fungere, tog jeg brug af React-Router, et router system der sørger for at servere den rigtige kode for de rigtige URLs, såvel som en udvidelse til det. Jeg brugte også React-Icons biblioteket til "burger menu" ikonet.
 
 ## Teknisk dokumentation
 ```js
