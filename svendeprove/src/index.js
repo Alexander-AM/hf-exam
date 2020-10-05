@@ -12,36 +12,40 @@ import { AiOutlineLoading } from "react-icons/ai";
 
 import "./css/index.scss";
 
+import ErrorBoundary from "./js/ErrorBoundary";
+
 ReactDOM.render(
     <React.StrictMode>
         <Suspense fallback={<AiOutlineLoading className="loading-icon" />}>
-            <Router>
-                <Header />
+            <ErrorBoundary>
+                <Router>
+                    <Header />
 
-                <Switch>
-                    <Route path="/animal/:id">
-                        <Animal />
-                    </Route>
+                    <Switch>
+                        <Route path="/animal/:id">
+                            <Animal />
+                        </Route>
 
-                    <Route path="/newsletter/:email">
-                        <Newsletter />
-                    </Route>
+                        <Route path="/newsletter/:email">
+                            <Newsletter />
+                        </Route>
 
-                    <Route path="/login">
-                        <Login />
-                    </Route>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
 
-                    <Route path="/admin">
-                        <Admin />
-                    </Route>
+                        <Route path="/admin">
+                            <Admin />
+                        </Route>
 
-                    <Route path="/">
-                        <App />
-                    </Route>
-                </Switch>
+                        <Route path="/">
+                            <App />
+                        </Route>
+                    </Switch>
 
-                <Footer />
-            </Router>
+                    <Footer />
+                </Router>
+            </ErrorBoundary>
         </Suspense>
     </React.StrictMode>,
     document.getElementById("root")
